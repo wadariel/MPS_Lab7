@@ -1,0 +1,55 @@
+﻿@model PartyInvites.Models.GuestResponse
+
+@{
+    Layout = null;
+}
+
+@* @{
+    var ErrorMessage = "";
+    try
+    {
+        WebMail.SmtpServer = "smtp.yandex.ru";
+        WebMail.SmtpPort = 25;
+        WebMail.UserName = "ariyuu@yandex.ru";
+        WebMail.Password = "lrloruokkfcfpjnb";
+        WebMail.From = "ariyuu@yandex.ru";
+        WebMail.EnableSsl = true;
+        string message = "Оп оп оп";
+        if (Model.WillAttend == bool.TrueString)
+        {
+            message = "Пользователь " + Model.Name + " принял Ваше приглашение на вечеринку";
+        }
+        else
+        {
+            message = "Пользователь " + Model.Name + " отклонил Ваше приглашение на вечеринку";
+        }
+        WebMail.Send(to: "wadariel@yandex.ru", subject: "Регистрация на вечеринку",
+            body: message);
+    }
+    catch (Exception ex)
+    {
+        ErrorMessage = ex.Message;
+    }
+} *@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Thanks</title>
+</head>
+<body>
+    <div>
+        <h1>@Model.Name, спасибо за ваш ответ!</h1> 
+        @if (Model.WillAttend == true)
+        {
+            @: Мы очень рады, что ты с нами! <br> Будет весело :) 
+        }
+        else
+        {
+            @: А мы тебя не приглашали
+        }
+    </div>
+</body>
+</html>
